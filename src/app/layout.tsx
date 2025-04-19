@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { Toaster } from "@/components/ui/sonner";
+import DynamicBreadcrumb from "@/components/dynamic-bread-crumb";
+import Link from "next/link";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -23,11 +30,58 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    // TODO: check out what this does?
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} antialiased`}>
+        <main className="font-main">
+          <NavigationMenu className="border border-b px-4 py-1">
+            <h5 className="font-bold">
+              ⚡ <Link href="/">KTU On the Go (CSE)</Link>
+            </h5>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuLink
+                  className={navigationMenuTriggerStyle()}
+                  asChild
+                >
+                  <a
+                    href="https://github.com/steve-cse"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitHub
+                  </a>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+          <div className="w-full max-w-5xl p-4 mx-auto">
+            <DynamicBreadcrumb />
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+
+              <Toaster />
+            </ThemeProvider>
+          </div>
+        </main>
+        {/* Footer */}
+        <footer className="w-full absolute bottom-0 border-t p-4 text-center text-sm text-muted-foreground">
+          <p>
+            Powered by{" "}
+            <a
+              href="https://www.bytecron.me/"
+              target="_blank"
+              className="underline"
+            >
+              Bytecron
+            </a>
+          </p>
+        </footer>
       </body>
     </html>
   );
