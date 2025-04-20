@@ -75,7 +75,7 @@ const FileTable: React.FC<FileTableProps> = ({ files }) => {
               onClick={() => handleRowClick(file)}
             >
               {getFileIcon(file.type)}
-              <span className="mt-0.5 max-w-full flex-1 text-base  truncate">
+              <span className="mt-0.5 max-w-full flex-1 text-base select-none truncate">
                 {file.name}
               </span>
             </TableCell>
