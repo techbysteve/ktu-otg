@@ -4,7 +4,7 @@ import { fetchFiles } from "../fetchFiles";
 export default async function BrowseFile({
   params,
 }: {
-  params: { path?: string[] };
+  params: Promise<{ path?: string[] }>;
 }) {
   const { path } = await params;
 
