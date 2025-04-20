@@ -3,8 +3,7 @@ import { FileType } from "./enums";
 
 export async function fetchFiles(filePath = ""): Promise<File[]> {
   const res = await fetch(
-    `https://codeberg.org/api/v1/repos/steve-cse/ktu-onthego-masters/contents/${filePath}`
-  );
+    `https://codeberg.org/api/v1/repos/steve-cse/ktu-onthego-masters/contents/${filePath}`, {cache: "force-cache" });
   if (!res.ok) throw new Error("Failed to fetch files");
 
   const files:File[]  = await res.json();
