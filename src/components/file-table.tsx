@@ -17,17 +17,17 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import DynamicBreadcrumb from "./dynamic-bread-crumb";
 
-type FileTableProps = {
-  files: Array<File>;
-};
-
 const getFileIcon = (type: string) => {
   if (type === FileType.FILE) return <FileText size={20} />;
   else if (type === FileType.DIR) return <Folder size={20} />;
   return <FileQuestion size={20} />; // Default icon
 };
 
-const FileTable: React.FC<FileTableProps> = ({ files }) => {
+type FileTableProps = {
+  files: Array<File>;
+};
+
+const FileTable = ({ files }: FileTableProps) => {
   const router = useRouter();
 
   const handleRowClick = async (file: File) => {
