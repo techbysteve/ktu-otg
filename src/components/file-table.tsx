@@ -41,9 +41,13 @@ const FileTable: React.FC<FileTableProps> = ({ files }) => {
   };
 
   const handleCopyClick = (file: File) => {
-    const encodedFileName = encodeURIComponent(file.name);
-    const filePath = `${window.location.href}/${encodedFileName}`;
-    navigator.clipboard.writeText(filePath);
+    if (file.type === FileType.DIR) {
+      const encodedFileName = encodeURIComponent(file.name);
+      const filePath = `${window.location.href}/${encodedFileName}`;
+      navigator.clipboard.writeText(filePath);
+    } else {
+      navigator.clipboard.writeText(file.download_url);
+    }
     toast.info("Permalink copied to clipboard.");
   };
 
@@ -59,7 +63,7 @@ const FileTable: React.FC<FileTableProps> = ({ files }) => {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>NAME</TableHead>
+          <TableHead className="select-none">NAME</TableHead>
           <TableHead className="hidden md:table-cell">TYPE</TableHead>
           <TableHead className="hidden md:table-cell">SIZE</TableHead>
           <TableHead className="hidden md:table-cell text-right">

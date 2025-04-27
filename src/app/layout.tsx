@@ -40,8 +40,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="font-main">
-            <NavigationMenu className="border border-b px-4 py-1">
+          <main className="font-main ">
+            <NavigationMenu className="border-b px-4 py-1">
               <h5 className="font-bold">
                 ⚡ <Link href="/">KTU On the Go (CSE)</Link>
               </h5>
