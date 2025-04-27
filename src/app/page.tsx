@@ -33,7 +33,7 @@ export default async function Home() {
           <li>Semester 3 (Complete)</li>
           <li>Semester 4 (Complete)</li>
         </ul>
-        <p className="text-sm font-semibold text-center !mt-15">
+        <p className="text-sm font-semibold text-center ">
           DISCLAIMER - The ownership rights to all content on this website
           belong to their respective owners.
         </p>

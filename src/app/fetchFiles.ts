@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 export async function fetchFiles(filePath = ""): Promise<File[]> {
   const res = await fetch(
-    `https://codeberg.org/api/v1/repos/steve-cse/ktu-onthego-masters/contents/${filePath}`, {cache: "force-cache" });
+    `${process.env.NEXT_API_URL}${filePath}`, {cache: "force-cache" });
 
   if (!res.ok) notFound()
 
