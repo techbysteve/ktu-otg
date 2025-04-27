@@ -15,6 +15,7 @@ import { Copy, Download, FileQuestion, FileText, Folder } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import DynamicBreadcrumb from "./dynamic-bread-crumb";
 
 type FileTableProps = {
   files: Array<File>;
@@ -60,65 +61,68 @@ const FileTable: React.FC<FileTableProps> = ({ files }) => {
   };
 
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="select-none">NAME</TableHead>
-          <TableHead className="hidden md:table-cell">TYPE</TableHead>
-          <TableHead className="hidden md:table-cell">SIZE</TableHead>
-          <TableHead className="hidden md:table-cell text-right">
-            ACTIONS
-          </TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {files.map((file) => (
-          <TableRow key={file.sha}>
-            <TableCell
-              className="flex items-center gap-1.5 px-3 mt-1 cursor-pointer w-full max-w-[90vw] md:max-w-[60vw] lg:max-w-[40vw]"
-              onClick={() => handleRowClick(file)}
-            >
-              {getFileIcon(file.type)}
-              <span className="mt-0.5 max-w-full flex-1 text-base select-none truncate">
-                {file.name}
-              </span>
-            </TableCell>
-            <TableCell className="hidden md:table-cell">
-              <span className="text-base leading-none ml-1">{file.type}</span>
-            </TableCell>
-            <TableCell className="hidden md:table-cell">
-              {file.size !== 0 ? (
-                <span className="text-base leading-none">
-                  {formatBytesToKBorMB(file.size)}
+    <>
+      <DynamicBreadcrumb />
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="select-none">NAME</TableHead>
+            <TableHead className="hidden md:table-cell">TYPE</TableHead>
+            <TableHead className="hidden md:table-cell">SIZE</TableHead>
+            <TableHead className="hidden md:table-cell text-right">
+              ACTIONS
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {files.map((file) => (
+            <TableRow key={file.sha}>
+              <TableCell
+                className="flex items-center gap-1.5 px-3 mt-1 cursor-pointer w-full max-w-[90vw] md:max-w-[60vw] lg:max-w-[40vw]"
+                onClick={() => handleRowClick(file)}
+              >
+                {getFileIcon(file.type)}
+                <span className="mt-0.5 max-w-full flex-1 text-base select-none truncate">
+                  {file.name}
                 </span>
-              ) : (
-                <span className="text-base ml-3">-</span>
-              )}
-            </TableCell>
-            <TableCell className="text-right hidden md:table-cell">
-              <div className="flex justify-end items-center">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => handleCopyClick(file)}
-                >
-                  <Copy size={15} />
-                </Button>
-                {file.type === "file" && (
+              </TableCell>
+              <TableCell className="hidden md:table-cell">
+                <span className="text-base leading-none ml-1">{file.type}</span>
+              </TableCell>
+              <TableCell className="hidden md:table-cell">
+                {file.size !== 0 ? (
+                  <span className="text-base leading-none">
+                    {formatBytesToKBorMB(file.size)}
+                  </span>
+                ) : (
+                  <span className="text-base ml-3">-</span>
+                )}
+              </TableCell>
+              <TableCell className="text-right hidden md:table-cell">
+                <div className="flex justify-end items-center">
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => handleDownloadClick(file)}
+                    onClick={() => handleCopyClick(file)}
                   >
-                    <Download size={15} />
+                    <Copy size={15} />
                   </Button>
-                )}
-              </div>
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+                  {file.type === "file" && (
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => handleDownloadClick(file)}
+                    >
+                      <Download size={15} />
+                    </Button>
+                  )}
+                </div>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </>
   );
 };
 

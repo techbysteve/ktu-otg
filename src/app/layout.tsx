@@ -10,7 +10,6 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Toaster } from "@/components/ui/sonner";
-import DynamicBreadcrumb from "@/components/dynamic-bread-crumb";
 import Link from "next/link";
 
 const inter = Inter({
@@ -31,16 +30,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // TODO: check out what this does?
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} antialiased`}>
+      <body
+        className={`${inter.variable} antialiased min-h-screen flex flex-col`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <main className="font-main ">
+          <div className="flex-grow">
             <NavigationMenu className="border-b px-4 py-1">
               <h5 className="font-bold">
                 ⚡ <Link href="/">KTU On the Go (CSE)</Link>
@@ -62,14 +62,10 @@ export default function RootLayout({
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
-            <div className="w-full max-w-5xl p-4 mx-auto">
-              <DynamicBreadcrumb />
 
-              {children}
-            </div>
-          </main>
-          {/* Footer */}
-          <footer className="w-full absolute bottom-0 border-t p-4 text-center text-sm text-muted-foreground">
+            <div className="w-full max-w-5xl p-4 mx-auto">{children}</div>
+          </div>
+          <footer className="w-full border-t p-4 text-center text-sm text-muted-foreground">
             <p>
               Powered by{" "}
               <a

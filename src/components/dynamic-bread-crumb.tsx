@@ -9,9 +9,11 @@ import {
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 export default function DynamicBreadcrumb() {
   const rawPathname = usePathname();
+  const router = useRouter();
   const decodedPathname = decodeURIComponent(rawPathname);
   const pathSegments = decodedPathname.split("/").filter(Boolean);
 
@@ -36,7 +38,7 @@ export default function DynamicBreadcrumb() {
             {/* Mobile: Show only ellipsis */}
             <BreadcrumbSeparator className="sm:hidden" />
             <BreadcrumbItem className="sm:hidden">
-              <BreadcrumbPage>...</BreadcrumbPage>
+              <BreadcrumbPage onClick={() => router.back()}>...</BreadcrumbPage>
             </BreadcrumbItem>
 
             {/* Desktop: Show full middle segments */}

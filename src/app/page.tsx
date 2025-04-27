@@ -10,9 +10,9 @@ export default async function Home() {
       <div className="mt-4 border p-3 rounded-xs">
         <p>
           <em>
-            &quot;It&apos;s not about how hard you hit. It&apos;s about how hard
-            you can get hit and keep moving forward. How much you can take and
-            keep moving forward.&quot; — Sylvester Stallone
+            “It&apos;s not about how hard you hit. It&apos;s about how hard you
+            can get hit and keep moving forward. How much you can take and keep
+            moving forward.” — Sylvester Stallone
           </em>
         </p>
         <p className="font-semibold">B.Tech Notes:</p>
