@@ -7,15 +7,15 @@ export default async function Home() {
   return (
     <>
       <FileTable files={files} />
-      <div className="mt-4 border p-3 rounded-xs">
-        <p>
+      <div className="mt-4 border p-4 rounded-xs">
+        <p className="text-center italic">
           <em>
-            “It&apos;s not about how hard you hit. It&apos;s about how hard you
+            It&apos;s not about how hard you hit. It&apos;s about how hard you
             can get hit and keep moving forward. How much you can take and keep
-            moving forward.” — Sylvester Stallone
+            moving forward. — Sylvester Stallone
           </em>
         </p>
-        <p className="font-semibold">B.Tech Notes:</p>
+        <p className="font-semibold">B.Tech Notes</p>
         <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
           <li>Semester 1 (Complete)</li>
           <li>Semester 2 (Complete)</li>
@@ -26,14 +26,14 @@ export default async function Home() {
           <li>Semester 7 (Complete)</li>
           <li>Semester 8 (Complete)</li>
         </ul>
-        <p className="font-semibold">M.Tech Notes:</p>
+        <p className="font-semibold">M.Tech Notes</p>
         <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
           <li>Semester 1 (Complete)</li>
           <li>Semester 2 (Complete)</li>
           <li>Semester 3 (Complete)</li>
           <li>Semester 4 (Complete)</li>
         </ul>
-        <p className="text-sm font-semibold">
+        <p className="text-sm font-semibold text-center !mt-15">
           DISCLAIMER - The ownership rights to all content on this website
           belong to their respective owners.
         </p>
