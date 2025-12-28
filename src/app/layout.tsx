@@ -52,7 +52,7 @@ export default function RootLayout({
                     asChild
                   >
                     <a
-                      href="https://github.com/steve-cse"
+                      href="https://github.com/techbysteve/ktu-otg"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
